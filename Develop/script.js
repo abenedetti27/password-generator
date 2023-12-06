@@ -9,27 +9,35 @@ function writePassword() {
     const numbers = "0123456789";
     const symbols = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
 
-    let passwordLength = parseInt(prompt("Enter password length (between 8 and 128 characters)"));
+    let passwordLength;
 
-    if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
-      alert("Please enter a valid password length between 8 and 128 characters.");
-      return "";
-    }
+    // Prompt for password length until a valid input is received
+    do {
+      passwordLength = parseInt(prompt("Enter password length (between 8 and 128 characters)"));
 
-    let includeLowerCase = confirm("Include lowercase characters?");
-    let includeUpperCase = confirm("Include uppercase characters?");
-    let includeNumbers = confirm("Include numbers?");
-    let includeSymbols = confirm("Include symbols?");
+      if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
+        alert("Please enter a valid password length between 8 and 128 characters.");
+      }
+    } while (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128);
+
+    let includeLowerCase, includeUpperCase, includeNumbers, includeSymbols;
+
+    // Prompt for character types until at least one type is selected
+    do {
+      includeLowerCase = confirm("Include lowercase characters?");
+      includeUpperCase = confirm("Include uppercase characters?");
+      includeNumbers = confirm("Include numbers?");
+      includeSymbols = confirm("Include symbols?");
+
+      if (!(includeLowerCase || includeUpperCase || includeNumbers || includeSymbols)) {
+        alert("Please select at least one character type.");
+      }
+    } while (!(includeLowerCase || includeUpperCase || includeNumbers || includeSymbols));
 
     console.log("includeLowerCase:", includeLowerCase);
     console.log("includeUpperCase:", includeUpperCase);
     console.log("includeNumbers:", includeNumbers);
     console.log("includeSymbols:", includeSymbols);
-
-    if (!(includeLowerCase || includeUpperCase || includeNumbers || includeSymbols)) {
-      alert("Please select at least one character type.");
-      return "";
-    }
 
     let allCharacters = "";
     if (includeLowerCase) allCharacters += lowerCase;
