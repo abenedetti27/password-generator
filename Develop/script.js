@@ -21,7 +21,7 @@ function writePassword() {
     let includeNumbers = confirm("Include numbers?");
     let includeSymbols = confirm("Include symbols?");
 
-    if (!includeLowerCase && !includeUpperCase && !includeNumbers && !includeSymbols) {
+    if (!(includeLowerCase || includeUpperCase || includeNumbers || includeSymbols)) {
       alert("Please select at least one character type.");
       return "";
     }
@@ -44,8 +44,9 @@ function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
- if (password !== "" && password !== undefined) 
+ if (password !== "" && password !== undefined) {
   passwordText.value = password;
+ }
 }
 
 
