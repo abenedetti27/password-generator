@@ -23,11 +23,10 @@ the user can confirm whether or not to include lowercase, uppercase, numeric, an
 After each prompt is answered, the input will be validated and at least one character type will be selected. When all prompts are answered, a password is generated that matches the selected criteria and is displayed on the page. 
 
 
-![Portfolio Header](image.png)
-![Portfolio Footer](image-1.png)
+![Screenshot of Password Generator]![Screenshot](image.png)
+![Screenshot of generated password]![Screenshot](image-1.png)
 
 
-Project Card
 ```
 var generateBtn = document.querySelector("#generate");
 
@@ -68,7 +67,7 @@ function writePassword() {
 ```
 
 ## Usage <a name="usage"></a>
-This application is a  deployed React portfolio of web development work samples.
+This application is a deployed application to generate secure passwords.
 
 
 ## License <a name="license"></a>
