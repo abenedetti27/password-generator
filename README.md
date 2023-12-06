@@ -1,5 +1,6 @@
 # Password Generator 
 
+[Visit Deployed Site](https://abenedetti27.github.io/password-generator/)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -28,127 +29,41 @@ After each prompt is answered, the input will be validated and at least one char
 
 Project Card
 ```
-import React from "react";
-import { Col } from "react-bootstrap";
+var generateBtn = document.querySelector("#generate");
 
-export const ProjectCard = ({ title, description, imgURL, appURL, repoURL }) => {
-  return (
-    <Col size={12} sm={6} md={4}>
-      <div className="project-card">
-        {/* <img src={imgURL} alt="Project" /> */}
-        <div className="project-details">
-          <h5>{title}</h5>
-          <a href={appURL} target="_blank" rel="noopener noreferrer">
-            <img src={imgURL} alt={title} className="project-image" />
-          </a>
-          <p>
-            <a href={repoURL} target="_blank" rel="noopener noreferrer">
-              GitHub Repo
-            </a>
-          </p>
-        </div>
-      </div>
-    </Col>
-  );
-};
+// Write password to the #password input
+function writePassword() {
+  function generatePassword() {
+    const lowerCase = "abcdefghijklmnopqrstuvwxyz";
+    const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const numbers = "0123456789";
+    const symbols = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
 
-export default ProjectCard;
+    let passwordLength;
 
-```
-Contact Form
-```
-import { useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import 'animate.css';
-import TrackVisibility from 'react-on-screen';
-import Form from 'react-bootstrap/Form';
+    // Prompt for password length until a valid input is received
+    do {
+      passwordLength = parseInt(prompt("Enter password length (between 8 and 128 characters)"));
 
-export const Contact = () => {
-    const personalInfo = {
-        firstName: '',
-        lastName: '',
-        email: '',
-        message: ''
-    }
-    const [formDetails, setFormDetails] = useState(personalInfo);
-    const [buttonText, setButtonText] = useState('Send Message');
-    const [status, setStatus] = useState({});
-
-    const onFormUpdate = (category, value) => {
-        setFormDetails({
-            ...formDetails,
-            [category]: value
-          });
+      if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
+        alert("Please enter a valid password length between 8 and 128 characters.");
       }
+    } while (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128);
 
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-        setButtonText("Sending...");
-    
-        try {
-            const response = await fetch("http://localhost:5000/contact", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json;charset=utf-8",
-                },
-                body: JSON.stringify(formDetails),
-            });
-    
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-    
-            setButtonText("Send");
-            const result = await response.json();
-            setFormDetails(personalInfo);
-    
-            if (result.code === 200) {
-                setStatus({ success: true, message: 'Message sent successfully' });
-            } else {
-                setStatus({ success: false, message: 'Something went wrong, please try again later.' });
-            }
-        } catch (error) {
-            console.error("Error during fetch:", error);
-            setStatus({ success: false, message: 'Failed to fetch. Check console for details.' });
-        }
-    };
-    
+    let includeLowerCase, includeUpperCase, includeNumbers, includeSymbols;
 
-return (
-    <Container>
-        <Row>
-            <Col xs={12} md={6} className="ms-auto">
-                <Form onSubmit={handleSubmit}>
-                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control
-                type="email"
-                placeholder="name@example.com"
-                value={formDetails.email}
-                onChange={(e) => onFormUpdate('email', e.target.value)}
-                style={{width: '400px'}}
-            />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Message</Form.Label>
-            <Form.Control
-                as="textarea"
-                rows={3}
-                value={formDetails.message}
-                onChange={(e) => onFormUpdate('message', e.target.value)}
-                style={{width: '400px'}}
-            />
-        </Form.Group>
-        <button type="submit"><span>{buttonText}</span></button>
-    </Form>
-    </Col>
-    </Row>
-    </Container>
-);
-}
+    // Prompt for character types until at least one type is selected
+    do {
+      includeLowerCase = confirm("Include lowercase characters?");
+      includeUpperCase = confirm("Include uppercase characters?");
+      includeNumbers = confirm("Include numbers?");
+      includeSymbols = confirm("Include symbols?");
 
-    
-    export default Contact;
+      if (!(includeLowerCase || includeUpperCase || includeNumbers || includeSymbols)) {
+        alert("Please select at least one character type.");
+      }
+    } while (!(includeLowerCase || includeUpperCase || includeNumbers || includeSymbols));
+
 
 ```
 
