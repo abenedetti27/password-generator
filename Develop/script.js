@@ -1,6 +1,22 @@
 // Assignment code here
 
+function generatePassword() {
+  const lowerCase = "abcdefghijklmnopqrstuvwxyz";
+  const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const numbers = "0123456789";
+  const symbols = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
 
+  let passwordLength = parseInt(prompt("Enter password (between 8 and 128 characters)"));
+
+  if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
+    alert("Please enter a valid password between 8 and 128 characters.");
+    return "";
+  }
+}
+
+let includeLowerCase = confirm("Include lowercase characters?");
+let includeUpperCase = confirm("Include uppercase characters?");
+let includeNumbers = confirm("Include numbers?");
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
