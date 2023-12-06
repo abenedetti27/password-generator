@@ -24,7 +24,17 @@ if (!includeLowerCase && !includeUpperCase && !includeNumbers && !includeSymbols
   return "";
 }
 
+let allCharacters = "";
+if (includeLowerCase) allCharacters += lowerCase;
+if (includeUpperCase) allCharacters += upperCase;
+if (includeNumbers) allCharacters += numbers;
+if (includeSymbols) allCharacters += symbols;
 
+let generatePassword = "";
+for (let i = 0; i < passwordLength; i++) {
+  let randomIndex = Math.floor(Math.random() * allCharacters.length);
+  generatePassword += allCharacters[randomIndex];
+}
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
