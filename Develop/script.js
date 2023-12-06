@@ -35,6 +35,10 @@ for (let i = 0; i < passwordLength; i++) {
   let randomIndex = Math.floor(Math.random() * allCharacters.length);
   generatePassword += allCharacters[randomIndex];
 }
+
+return generatePassword;
+
+
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
