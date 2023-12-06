@@ -21,6 +21,11 @@ function writePassword() {
     let includeNumbers = confirm("Include numbers?");
     let includeSymbols = confirm("Include symbols?");
 
+    console.log("includeLowerCase:", includeLowerCase);
+    console.log("includeUpperCase:", includeUpperCase);
+    console.log("includeNumbers:", includeNumbers);
+    console.log("includeSymbols:", includeSymbols);
+
     if (!(includeLowerCase || includeUpperCase || includeNumbers || includeSymbols)) {
       alert("Please select at least one character type.");
       return "";
@@ -31,6 +36,8 @@ function writePassword() {
     if (includeUpperCase) allCharacters += upperCase;
     if (includeNumbers) allCharacters += numbers;
     if (includeSymbols) allCharacters += symbols;
+
+    console.log("allCharacters:", allCharacters);
 
     let generatedPassword = "";
     for (let i = 0; i < passwordLength; i++) {
@@ -44,11 +51,12 @@ function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
- if (password !== "" && password !== undefined) {
-  passwordText.value = password;
- }
-}
+  console.log("Generated Password:", password);
 
+  if (password !== "" && password !== undefined) {
+    passwordText.value = password;
+  }
+}
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
