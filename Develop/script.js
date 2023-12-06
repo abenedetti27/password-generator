@@ -17,6 +17,14 @@ function generatePassword() {
 let includeLowerCase = confirm("Include lowercase characters?");
 let includeUpperCase = confirm("Include uppercase characters?");
 let includeNumbers = confirm("Include numbers?");
+let includeSymbols = confirm("Include symbols?");
+
+if (!includeLowerCase && !includeUpperCase && !includeNumbers && !includeSymbols) {
+  alert("Please select at least one character type.");
+  return "";
+}
+
+
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
